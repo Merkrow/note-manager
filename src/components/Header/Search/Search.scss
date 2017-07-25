@@ -1,0 +1,51 @@
+// variables
+$input-border-color: #d3d1d3;
+$input-border-bottom-color: #b9b7b9;
+$input-placeholder-color: #a3a0a1;
+
+
+// animations
+
+@keyframes move {
+  0% {}
+  100% { background-position: 5px; }
+}
+
+@keyframes flip {
+  0% { background-position: 5px; }
+  100% { background-position: 82px; }
+}
+
+// style
+
+.search {
+  position: absolute;
+  left: 662px;
+  top: 8px;
+  input {
+    width: 244px;
+    height: 24px;
+    border-radius: 4px;
+    border: 1px solid $input-border-color;
+    border-bottom: 1px solid $input-border-bottom-color;
+    background: url('/images/search-image.png') no-repeat, linear-gradient(to bottom, #fdfdfd 0%,#f1f1f1 100%);
+    background-position: 82px center;
+    background-size: 12px;
+    font-size: 12px;
+    padding-top: 3px;
+    padding-left: 103px;
+    box-sizing: border-box;
+    transition: padding 0.5s;
+  }
+  .search-input-focused {
+    animation-duration: 0.5s;
+    animation-name: move;
+    animation-fill-mode: forwards;
+    padding-left: 24px;
+  }
+  input.search-input-blured {
+    animation-duration: 0.5s;
+    animation-name: flip;
+    animation-fill-mode: forwards;
+  }
+}

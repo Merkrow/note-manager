@@ -1,0 +1,93 @@
+// variables
+$border-color: #d6d6d6;
+$box-shadow: rgba(0,0,0,0.05);
+$settings-dropdown-color: #f0f0f0;
+$white-color: #fff;
+$settings-dropdown-hover-color: #5699f7;
+$dropdown-border-color: #a3a3a3;
+$dropdown-box-shadow-color: #c5c5c5;
+$dropdown-inner-border: #dfdfdf;
+
+// style
+
+@media (min-width: #{768px}) {
+  .directory-selector {
+    ul {
+      height: 300px;
+    }
+  }
+}
+
+@media (max-width: #{768px}) {
+  .directory-selector {
+    ul {
+      height: 100px;
+    }
+  }
+}
+
+
+.directory-selector {
+  width: 255px;
+  margin-top: 6px;
+  text-align: left;
+  font-size: 12px;
+  display: inline-block;
+  position: relative;
+  input {
+    height: 21px;
+    background: url('/images/blue-folder.png') no-repeat 9px 4px, url('/images/selector.png') no-repeat right center;
+    border-radius: 5px;
+    background-size: 15px;
+    width: 255px;
+    border: 1px solid $border-color;
+    box-shadow: 0 1px 1px $box-shadow;
+    background-color: white;
+    text-align: left;
+    padding-left: 30px;
+    overflow: hidden;
+    line-height: 16px;
+  }
+  ul {
+    position: absolute;
+    display: none;
+    padding: 4px 0;
+    list-style: none;
+    text-align: left;
+    border-radius: 4.5px;
+    border: 1px solid $dropdown-border-color;
+    background-color: $settings-dropdown-color;
+    width: 236px;
+    margin-top: 2px;
+    top: 100%;
+    left: 0;
+    font-size: 12px;
+    z-index: 1000000;
+    box-shadow: 0 0 6px 3px $dropdown-box-shadow-color;
+    overflow: scroll;
+    img {
+      height: 13px;
+      margin: 9px 10px 0 15px;
+    }
+    .folder-option {
+      border-bottom: 1px solid $border-color;
+      height: 30px;
+      padding-left: 4px;
+      white-space: nowrap;
+      width: 100vw;
+      line-height: 16px;
+    }
+    .folder-option:hover {
+      background-color: #d6d6d6;
+    }
+    .selected-option {
+      background-image: url('/images/select-image.png');
+      background-repeat: no-repeat;
+      background-position: 5px center;
+      background-size: 9px 9px;
+    }
+  }
+  .show-directory-selector {
+    display: inline-block;
+  }
+}

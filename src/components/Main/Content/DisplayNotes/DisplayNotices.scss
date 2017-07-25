@@ -1,0 +1,194 @@
+// variables
+$file-image-selected-color: #e0e0e0;
+$note-title-selected-color: #216bd2;
+$white-color: #fff;
+$border-btm: #c0c0c0;
+$border-right: #d8d8d8;
+$odd-child-bg: #f5f5f5;
+$list-selected-bg: #5598f7;
+
+$settings-dropdown-color: #f0f0f0;
+$white-color: #fff;
+$settings-dropdown-hover-color: #5699f7;
+$dropdown-border-color: #a3a3a3;
+$dropdown-box-shadow-color: #c5c5c5;
+$dropdown-inner-border: #dfdfdf;
+
+
+// style
+
+.files-article {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  .scroll-wrapper {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    overflow: scroll;
+    padding-right: 25px;
+    .custom-vertical-scroll {
+      position: absolute;
+      bottom: 2px;
+      display: inline-block;
+      width: 7px;
+      background: rgba(138, 140, 141, 0.5);
+      border-radius: 5px;
+      border: 1px solid #8a8c8d;
+      box-sizing: border-box;
+    }
+  }
+  .settings-dropdown {
+    position: fixed;
+    padding: 4px 0;
+    list-style: none;
+    text-align: left;
+    border-radius: 4.5px;
+    border: 1px solid $dropdown-border-color;
+    background-color: $settings-dropdown-color;
+    width: 236px;
+    margin-top: 2px;
+    top: 0;
+    left: 20%;
+    font-size: 12px;
+    z-index: 1000000;
+    box-shadow: 0 0 6px 3px $dropdown-box-shadow-color;
+    .settings-dropdown-item {
+      padding: 3px 0 0 22px;
+      height: 18px;
+    }
+    .settings-dropdown-item:nth-child(n+2) {
+      border-top: 2px solid $dropdown-inner-border;
+    }
+    .settings-dropdown-item:hover {
+      background-color: $settings-dropdown-hover-color;
+      color: $white-color;
+      cursor: pointer;
+    }
+  }
+  .note-icons {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    .selected-item {
+      .file-image {
+        background-color: $file-image-selected-color;
+        border-radius: 7px;
+      }
+      .note-title {
+        background-color: $note-title-selected-color;
+        border-radius: 8px;
+        color: $white-color;
+      }
+    }
+    .note-container {
+      width: 32px;
+      margin: 0;
+      margin: 3px 46px 28px 32px;
+      text-align: center;
+      position: relative;
+      .item-wrap {
+        width: 56px;
+        height: 82px;
+        position: relative;
+        .file-image {
+          background-image: url('/images/file.png');
+          background-size: 46px 60px;
+          background-repeat: no-repeat;
+          background-position: center;
+          height: 72px;
+          width: 56px;
+        }
+        .note-title {
+          padding: 0 6px 2px 6px;
+          font-size: 12px;
+          position: absolute;
+          margin-top: 13px;
+          left: 50%;
+          top: 63px;
+          transform: translate(-50%, 0);
+          width: 100px;
+          overflow: hidden;
+          line-height: 15px;
+          display: inline-block;
+          text-overflow: ellipsis;
+          word-wrap: break-word;
+        }
+      }
+    }
+  }
+  .note-list {
+    display: flex;
+    flex-direction: column;
+    padding: 2px 0;
+    font-size: 12px;
+    .item-wrap {
+      width: 30%;
+      display: inline-block;
+      padding: 0 10px 0 0;
+    }
+    .first-line {
+      border-bottom: 1px solid $border-btm;
+      padding: 2px 0;
+      font-weight: bold;
+      display: flex;
+      span {
+        padding-left: 3px;
+      }
+      .item-description {
+        width: 40%;
+        padding: 0 10px 0 0;
+        border-right: 1px solid $border-right;
+      }
+      .item-wrap {
+        border-right: 1px solid $border-right;
+      }
+    }
+    .note-container {
+      height: 19px;
+      padding: 2px 0 0 28px;
+      display: flex;
+      flex-direction: row;
+      line-height: 16px;
+      .item-description {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding: 0 10px 0 0;
+        width: 40%;
+      }
+      .item-tags {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 20%;
+      }
+      .item-wrap {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        .note-title {
+          margin-left: 20px;
+        }
+        .file-image {
+          background-image: url('/images/icon-file.png');
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center;
+          display: inline-block;
+          position: absolute;
+          height: 15px;
+          width: 12px;
+        }
+      }
+    }
+    .note-container:nth-child(odd) {
+      background-color: $odd-child-bg;
+    }
+    .note-container.selected-item {
+      background-color: $list-selected-bg;
+    }
+
+  }
+}

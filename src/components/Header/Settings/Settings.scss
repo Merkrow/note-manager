@@ -1,0 +1,127 @@
+// variables
+$gradient-color-main: #f1f1f1;
+$gradient-color-sub1: #fdfdfd;
+$gradient-color-sub2: #d4d4d4;
+$menu-button-border-color: #bab8ba;
+$view-button-background-color: #6d6d6e;
+$settings-dropdown-color: #f0f0f0;
+$white-color: #fff;
+$settings-dropdown-hover-color: #5699f7;
+$dropdown-border-color: #a3a3a3;
+$dropdown-box-shadow-color: #c5c5c5;
+$dropdown-inner-border: #dfdfdf;
+
+// style
+
+@media (max-width: #{768px}) {
+  .settings {
+    margin: 8px 0 0 20px;
+  }
+}
+
+@media (min-width: #{768px}) {
+  .settings {
+    margin: 8px 0 0 300px;
+  }
+}
+
+.settings {
+  display: inline-block;
+  width: 150px;
+  display: flex;
+  flex-direction: row;
+  .settings-menu-button {
+    outline: none;
+    width: 30px;
+    height: 24px;
+    border: 1px solid $menu-button-border-color;
+    border-radius: 4px;
+    background: linear-gradient(to bottom, $gradient-color-sub1 0%,$gradient-color-main 100%);
+    cursor: pointer;
+    .img {
+      display: block;
+    }
+    .icons-view-image {
+      height: 10px;
+      width: 10px;
+    }
+    .list-view-image {
+      height: 10px;
+      width: 14px;
+      padding: 0 1px 0 0;
+    }
+    .dropdown-image {
+      width: 8px;
+      height: 5px;
+      margin-bottom: 5px;
+    }
+  }
+  .view-button-left {
+    border-radius: 4px 0 0 4px;
+    border-right: none;
+  }
+  .view-button-right {
+    border-radius: 0 4px 4px 0;
+    margin-right: 6px;
+    width: 29px;
+  }
+  .view-button-selected {
+    background: none;
+    background-color: $view-button-background-color;
+  }
+  .settings-menu {
+    line-height: 1;
+    height: 24px;
+    width: 40px;
+    position: relative;
+    .active-settings-menu-button {
+      background: linear-gradient(to bottom, $gradient-color-main 0%,$gradient-color-sub2 100%);
+    }
+    .settings-menu-button {
+      width: 40px;
+      .settings-image-gear {
+        width: 14px;
+        height: 14px;
+        position: absolute;
+        top: 5px;
+        left: 7px;
+      }
+      .settings-image-dropdown {
+        width: 8px;
+        height: 5px;
+        position: absolute;
+        top: 10px;
+        right: 6px;
+      }
+    }
+  }
+  .settings-dropdown {
+    position: absolute;
+    padding: 4px 0;
+    list-style: none;
+    text-align: left;
+    border-radius: 4.5px;
+    border: 1px solid $dropdown-border-color;
+    background-color: $settings-dropdown-color;
+    width: 236px;
+    margin-top: 2px;
+    top: 100%;
+    left: 0;
+    font-size: 12px;
+    z-index: 1000000;
+    box-shadow: 0 0 6px 3px $dropdown-box-shadow-color;
+    .settings-dropdown-item {
+      padding: 3px 0 0 22px;
+      height: 18px;
+      line-height: 16px;
+    }
+    .settings-dropdown-item:nth-child(n+2) {
+      border-top: 2px solid $dropdown-inner-border;
+    }
+    .settings-dropdown-item:hover {
+      background-color: $settings-dropdown-hover-color;
+      color: $white-color;
+      cursor: pointer;
+    }
+  }
+}

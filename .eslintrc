@@ -1,0 +1,39 @@
+{
+  "extends": ["airbnb-base", "plugin:react/recommended"],
+  "parser": "babel-eslint",
+  "rules": {
+    "comma-dangle": ["off"],
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+    "eol-last": ["off"],
+    "quote-props": ["off"],
+    "dot-notation": ["off"],
+    "camelcase": ["off"],
+    "linebreak-style": ["off"],
+    "react/prop-types": 0,
+    "no-underscore-dangle": ["off"],
+    "no-param-reassign": ["off"],
+    "no-unused-expressions": ["off"],
+    "no-bitwise": ["off"],
+    "consistent-return": ["off"],
+    "default-case": ["off"],
+    "new-cap": ["off"],
+    "no-mixed-operators": ["off"],
+    "no-use-before-define": ["off"],
+    "class-methods-use-this": ["off"],
+    "no-continue": ["off"],
+    "no-undef": ["off"]
+  },
+  "globals": {
+    "React$Element": true,
+    "ReactClass": true,
+    "Event": true,
+    "Promise": true,
+    "Generator": true,
+    "window": true,
+    "document": true,
+    "fabric": true
+  },
+  "settings": {
+    "import/core-modules": ['chai']
+  }
+}

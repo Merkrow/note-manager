@@ -1,0 +1,171 @@
+// variables
+$border-right: #dcdada;
+$gradient-top: #f6f3f2;
+$gradient-bottom: #f1f1f1;
+$selected-bg: #dbdbdb;
+
+$settings-dropdown-color: #f0f0f0;
+$white-color: #fff;
+$settings-dropdown-hover-color: #5699f7;
+$dropdown-border-color: #a3a3a3;
+$dropdown-box-shadow-color: #c5c5c5;
+$dropdown-inner-border: #dfdfdf;
+
+// style
+
+@media (max-width: #{768px}) {
+  .sidebar {
+    min-height: 50%;
+    position: relative;
+  }
+}
+
+.sidebar {
+  min-width: 300px;
+  border-right: 1px solid $border-right;
+  background: linear-gradient(135deg, $gradient-top 0%, $gradient-bottom 100%);
+  font-size: 12px;
+  overflow: hidden;
+  .settings-dropdown {
+    position: fixed;
+    padding: 4px 0;
+    list-style: none;
+    text-align: left;
+    border-radius: 4.5px;
+    border: 1px solid $dropdown-border-color;
+    background-color: $settings-dropdown-color;
+    width: 236px;
+    margin-top: 2px;
+    top: 0;
+    left: 20%;
+    font-size: 12px;
+    z-index: 1000000;
+    box-shadow: 0 0 6px 3px $dropdown-box-shadow-color;
+    .settings-dropdown-item {
+      padding: 3px 0 0 22px;
+      height: 18px;
+      line-height: 16px;
+    }
+    .settings-dropdown-item:nth-child(n+2) {
+      border-top: 2px solid $dropdown-inner-border;
+    }
+    .settings-dropdown-item:hover {
+      background-color: $settings-dropdown-hover-color;
+      color: $white-color;
+      cursor: pointer;
+    }
+  }
+  @media (max-width: #{768px}) {
+    .scroll-wrapper {
+      overflow: scroll;
+      display: inline-block;
+      width: 100%;
+      position: absolute;
+      padding-right: 25px;
+      padding-bottom: 15px;
+      top: 0;
+      bottom: 0;
+      .custom-vertical-scroll {
+        position: absolute;
+        bottom: 2px;
+        display: inline-block;
+        width: 7px;
+        background: rgba(138, 140, 141, 0.5);
+        border-radius: 5px;
+        border: 1px solid #8a8c8d;
+        box-sizing: border-box;
+      }
+      .custom-horizontal-scroll {
+        position: absolute;
+        display: inline-block;
+        height: 7px;
+        border-radius: 5px;
+        border: 1px solid #8a8c8d;
+        box-sizing: border-box;
+        background: rgba(138, 140, 141, 0.5);
+      }
+    }
+    .directories-list {
+      margin: 0 auto;
+      padding: 16px 0;
+      .directory {
+        list-style: none;
+        height: 26px;
+        min-width: 100%;
+        white-space: nowrap;
+        display: inline-block;
+        background-image: url('/images/black-folder.png');
+        background-repeat: no-repeat;
+        background-size: 18px 15px;
+        box-sizing: border-box;
+        cursor: pointer;
+        input {
+          display: inline-block;
+          margin-top: 4px;
+        }
+        span {
+          display: inline-block;
+          margin-top: 6px;
+        }
+      }
+    }
+  }
+  @media (min-width: #{768px}) {
+    .scroll-wrapper {
+      overflow: scroll;
+      display: inline-block;
+      width: 300px;
+      height: 100%;
+      position: relative;
+      padding-right: 25px;
+      padding-bottom: 25px;
+      .custom-vertical-scroll {
+        position: absolute;
+        bottom: 2px;
+        display: inline-block;
+        width: 7px;
+        background: rgba(138, 140, 141, 0.5);
+        border-radius: 5px;
+        border: 1px solid #8a8c8d;
+        box-sizing: border-box;
+      }
+      .custom-horizontal-scroll {
+        position: absolute;
+        display: inline-block;
+        height: 7px;
+        border-radius: 5px;
+        border: 1px solid #8a8c8d;
+        box-sizing: border-box;
+        background: rgba(138, 140, 141, 0.5);
+      }
+    }
+  }
+  .directories-list {
+    margin: 0 auto;
+    padding: 16px 0;
+    .directory {
+      list-style: none;
+      height: 26px;
+      min-width: 100%;
+      white-space: nowrap;
+      display: inline-block;
+      background-image: url('/images/black-folder.png');
+      background-repeat: no-repeat;
+      background-size: 18px 15px;
+      box-sizing: border-box;
+      cursor: pointer;
+      input {
+        display: inline-block;
+        margin-top: 4px;
+      }
+      span {
+        display: inline-block;
+        margin-top: 6px;
+      }
+    }
+    .selected-directory {
+      background-color: $selected-bg;
+      height: 26px
+    }
+  }
+}
