@@ -201,7 +201,7 @@ class NotePopup extends Component {
       <div id='modal' className='modal-background'>
         <div className='note-popup'>
           <header className='popup-header'>
-            <button className='close-button' onClick={() => this.submitNote()}></button>
+            <button className='close-button' onClick={() => this.props.closePopup()}></button>
             <span ref={(span) => { this.span = span; }} className='title' onClick={() => this.toggleDropdown()}>
               <span className='title-text'>{this.state.title || 'text'}</span><span className='edit-message'><span>—</span>Edited</span><img className='triangle' src='./images/dropdown.png'></img>
             </span>

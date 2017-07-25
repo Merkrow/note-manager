@@ -7,6 +7,7 @@ $settings-dropdown-hover-color: #5699f7;
 $dropdown-border-color: #a3a3a3;
 $dropdown-box-shadow-color: #c5c5c5;
 $dropdown-inner-border: #dfdfdf;
+$dropdown-hover: #5699f7;
 
 // style
 
@@ -51,34 +52,39 @@ $dropdown-inner-border: #dfdfdf;
   ul {
     position: absolute;
     display: none;
-    padding: 4px 0;
+    padding: 3px 0;
     list-style: none;
     text-align: left;
     border-radius: 4.5px;
-    border: 1px solid $dropdown-border-color;
-    background-color: $settings-dropdown-color;
+    border: 1px solid #a3a3a3;
+    background-color: #f0f0f0;
     width: 236px;
     margin-top: 2px;
     top: 100%;
     left: 0;
-    font-size: 12px;
+    font-size: 13px;
     z-index: 1000000;
     box-shadow: 0 0 6px 3px $dropdown-box-shadow-color;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
     img {
-      height: 13px;
-      margin: 9px 10px 0 15px;
+      height: 12px;
+      margin: 0 10px 0 15px;
+      position: relative;
+      top: 1px;
+      left: 5px;
     }
     .folder-option {
       border-bottom: 1px solid $border-color;
-      height: 30px;
-      padding-left: 4px;
+      height: 20px;
+      padding-left: 1px;
       white-space: nowrap;
-      width: 100vw;
-      line-height: 16px;
+      line-height: 20px;
+      text-overflow: ellipsis;
+      overflow: hidden;
     }
     .folder-option:hover {
-      background-color: #d6d6d6;
+      background-color: $dropdown-hover;
     }
     .selected-option {
       background-image: url('/images/select-image.png');

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Autocomplete from 'react-autocomplete';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import Dropdown from '../../../Dropdown';
 import notices from '../../../../reducers/notices';
 import selectedDirectory from '../../../../reducers/selectedDirectory';
 import noteView from '../../../../reducers/noteView';
@@ -24,20 +25,13 @@ class DisplayNotices extends Component {
   constructor(props) {
     super(props);
     this.state = { value: null, showContextMenu: false, contextMenuCoordinates: [0, 0], };
-    this.handleOutsideClick = this.handleOutsideClick.bind(this);
+    this.deleteNote = this.deleteNote.bind(this);
+    this.showEditorPopup = this.showEditorPopup.bind(this);
+    this.closeContextMenu = this.closeContextMenu.bind(this);
   }
   componentDidMount() {
     const { getNotices } = this.props.actions;
     getNotices();
-  }
-  ComponentWillUnmount() {
-    document.removeEventListener('click', this.handleOutsideClick, false);
-  }
-  handleOutsideClick(e) {
-    const target = e.target || e.srcElement;
-    if (!this.ul.contains(target)) {
-      this.closeContextMenu();
-    }
   }
   filterNotices() {
     const { notices, selectedDirectory } = this.props;
@@ -50,24 +44,22 @@ class DisplayNotices extends Component {
     this.closeContextMenu();
   }
   renderContextMenu(e, id) {
-    const { showContextMenu, contextMenuCoordinates, value } = this.state
+    const { contextMenuCoordinates, value } = this.state;
     return (
-      <ul
-        ref={ul => { this.ul = ul; }}
-        style={{ display: showContextMenu ? 'inline-block' : 'none', left: contextMenuCoordinates[0], top: contextMenuCoordinates[1] }}
-        className='settings-dropdown'>
-        <li className='settings-dropdown-item' onClick={() => this.showEditorPopup(value)}>Edit Note</li>
-        <li className='settings-dropdown-item' onClick={() => this.deleteNote()}>Delete Note</li>
-      </ul>
+      <Dropdown
+        from='note'
+        closeContextMenu={this.closeContextMenu}
+        value={value}
+        deleteNote={this.deleteNote}
+        showEditorPopup={this.showEditorPopup}
+        coordinates={contextMenuCoordinates} />
     );
   }
   closeContextMenu() {
-    document.removeEventListener('click', this.handleOutsideClick, false);
     this.setState({ showContextMenu: false });
   }
   contextMenu(e, note) {
     e.preventDefault();
-    document.addEventListener('click', this.handleOutsideClick, false);
     this.selectNote(note);
     this.setState({ showContextMenu: true, contextMenuCoordinates: [e.clientX, e.clientY] });
   }
@@ -96,6 +88,7 @@ class DisplayNotices extends Component {
   }
   render() {
     const { noteView, filterNotes } = this.props;
+    const { showContextMenu } = this.state;
     const filteredNotices = this.filterNotices()
       .filter(item => item.title.indexOf(filterNotes) !== -1);
     return (
@@ -103,7 +96,7 @@ class DisplayNotices extends Component {
         <Scroll>
           <div className={ noteView === 'icon' ? 'note-icons' : 'note-list' }>
             { noteView === 'icon' ? '' : this.renderListFirstLine() }
-            { this.renderContextMenu() }
+            { showContextMenu && this.renderContextMenu() }
             { filteredNotices
               .sort((note1, note2) => note1.position - note2.position)
               .map((item, index) =>

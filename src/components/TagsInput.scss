@@ -2,46 +2,47 @@ $dropdown-input: #cfcfcf;
 
 .tags-input-container {
   display: inline-block;
-  margin: 6px 6px 0 8px;
+  margin: 5px 6px 0 8px;
   @media (max-width: #{768px}) {
     width: 210px;
   }
   @media (min-width: #{768px}) {
-    width: 334px;
+    width: 324px;
   }
   background-color: #fff;
-  height: 19px;
+  height: 20px;
   border: 1px solid $dropdown-input;
   overflow: hidden;
+  text-align: left;
   .tags-container {
     background-color: #fff;
     display: inline-block;
     width: 322px;
     text-align: left;
     overflow: hidden;
+    padding-left: 2px;
     .tags-wrap {
       font-size: 12px;
       height: 100%;
       width: 100%;
       display: block;
-      overflow-x: scroll;
       box-sizing: border-box;
       line-height: 17px;
       .tag {
         display: inline-block;
         height: 100%;
-        margin: 1px 5px;
-        padding: 0 4px 0 17px;
-        border-radius: 5px;
+        margin: 3px 0 0 2px;
+        padding: 0 9px 0 17px;
+        border-radius: 8px;
         background-color: #e7ebef;
         background-image: url('/images/tag-image.png');
-        background-position: 5px center;
+        background-position: 5px 4px;
         background-repeat: no-repeat;
         background-size: 9px;
         box-sizing: border-box;
       }
       .tag-input {
-        height: 16px;
+        height: 100%;
         border: none;
       }
     }

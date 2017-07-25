@@ -8,6 +8,7 @@ import directories from '../../../../reducers/directories';
 import selectedDirectory from '../../../../reducers/selectedDirectory';
 import editDirectory from '../../../../reducers/editDirectory';
 import Scroll from '../../../Scroll';
+import Dropdown from '../../../Dropdown';
 import './DisplayDirectories.scss';
 
 const mapStateToProps = ({ directories, selectedDirectory, editDirectory }) => ({
@@ -23,25 +24,19 @@ class DisplayDirectories extends Component {
   constructor(props) {
     super(props);
     this.state = { opened: [0], showDropdown: false, dropdownCoordinates: [0, 0], value: '', save: true };
-    this.handleOutsideClick = this.handleOutsideClick.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.editFolder = this.editFolder.bind(this);
+    this.deleteFolder = this.deleteFolder.bind(this);
+    this.newFolder = this.newFolder.bind(this);
+    this.closeContextMenu = this.closeContextMenu.bind(this);
   }
   componentDidMount() {
     const { getDirectories } = this.props.actions;
     getDirectories();
   }
-  componentWillUnmount() {
-    document.removeEventListener('click', this.handleOutsideClick, false);
-  }
   handleOnChange(e) {
     const { value, name } = e.target;
     this.setState({ [name]: value, save: false });
-  }
-  handleOutsideClick(e) {
-    const target = e.target || e.srcElement;
-    const { showDropdown } = this.state;
-    if (showDropdown && !this.ul.contains(target)) {
-      this.closeContextMenu();
-    }
   }
   toggleDirectory(folder) {
     const { opened } = this.state;
@@ -77,7 +72,13 @@ class DisplayDirectories extends Component {
     }
     alert('Impossible to delete root folder!');
   }
+  handleKeyPress(e) {
+    if (e.key === 'Enter') {
+      this.saveChanges();
+    }
+  }
   editFolder() {
+    document.addEventListener('keypress', this.handleKeyPress, false);
     const { directories, selectedDirectory } = this.props;
     const { setEditDirectory } = this.props.actions;
     this.closeContextMenu();
@@ -90,26 +91,29 @@ class DisplayDirectories extends Component {
     const { postDirectory } = this.props.actions;
     const { opened } = this.state;
     this.closeContextMenu();
+    document.addEventListener('keypress', this.handleKeyPress, false);
     if (opened.indexOf(selectedDirectory) === -1) {
       this.setState({ opened: [...opened, selectedDirectory] });
     }
     postDirectory({ id: selectedDirectory, name: this.checkUntitled(selectedDirectory)});
   }
   renderContextMenu(e, id) {
-    const { showDropdown, dropdownCoordinates } = this.state;
+    const { dropdownCoordinates } = this.state;
     const { selectedDirectory } = this.props;
     return (
-      <ul ref={ul => { this.ul = ul; }} style={{ display: showDropdown ? 'inline-block' : 'none', left: dropdownCoordinates[0], top: dropdownCoordinates[1] }} className='settings-dropdown'>
-        <li className='settings-dropdown-item' onClick={() => this.editFolder()}>Edit Folder</li>
-        <li className='settings-dropdown-item' onClick={() => this.deleteFolder()}>Delete Folder</li>
-        <li className='settings-dropdown-item' onClick={() => this.newFolder()}>New Folder</li>
-      </ul>
+      <Dropdown
+        editFolder={this.editFolder}
+        deleteFolder={this.deleteFolder}
+        newFolder={this.newFolder}
+        closeContextMenu={this.closeContextMenu}
+        coordinates={dropdownCoordinates}/>
     );
   }
   saveChanges() {
     const { save, value } = this.state;
     const { updateDirectory, removeEditDirectory } = this.props.actions;
     const { editDirectory, directories } = this.props;
+    document.removeEventListener('keypress', this.handleKeyPress, false);
     if (!save) {
       updateDirectory(editDirectory.id, Object.assign(editDirectory, { name: value || this.checkUntitled(editDirectory.parentId) }));
       this.setState({ save: true });
@@ -171,9 +175,10 @@ class DisplayDirectories extends Component {
     return renderTree({ obj: sortedDirectories, id: 0, result: [], paddingLeft: 40 });
   }
   render() {
+    const { showDropdown } = this.state;
     return (
       <aside className='sidebar'>
-        { this.renderContextMenu() }
+        { showDropdown && this.renderContextMenu() }
         <Scroll>
           <ul className='directories-list'>
             { this.renderDirectories() }
