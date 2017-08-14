@@ -1,6 +1,6 @@
 import config from '../config/config';
 
-export const postDirectory = (params) => async (dispatch) => {
+export const postDirectory = params => async (dispatch) => {
   try {
     const response = await fetch(`${config.url}directories`, {
       method: 'POST',
@@ -20,7 +20,7 @@ export const getDirectories = () => async (dispatch) => {
     const response = await fetch(`${config.url}directories`);
     const data = await response.json();
     dispatch({ type: 'SET_DIRECTORIES', payload: data });
-  } catch(err) {
+  } catch (err) {
     console.log(err);
   }
 };
@@ -34,7 +34,7 @@ export const updateDirectory = (id, params) => async (dispatch) => {
     });
     const data = await response.json();
     dispatch({ type: 'UPDATE_DIRECTORY', payload: data });
-  } catch(err) {
+  } catch (err) {
     console.log(err);
   }
 };
@@ -46,7 +46,7 @@ export const deleteDirectory = id => async (dispatch) => {
     });
     const data = await response.json();
     dispatch({ type: 'DELETE_DIRECTORY', payload: data.id });
-  } catch(err) {
+  } catch (err) {
     console.log(err);
   }
 };

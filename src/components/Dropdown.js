@@ -21,24 +21,24 @@ class Dropdown extends Component {
   renderFolderContextMenu() {
     const { editFolder, deleteFolder, newFolder, coordinates } = this.props;
     return (
-      <ul ref={ul => { this.ul = ul; }} style={{ left: coordinates[0], top: coordinates[1] }} className='settings-dropdown'>
+      <ul ref={ (ul) => { this.ul = ul; }} style={{ left: coordinates[0], top: coordinates[1] }} className='settings-dropdown'>
         <li className='settings-dropdown-item' onClick={() => editFolder()}>Edit Folder</li>
         <li className='settings-dropdown-item' onClick={() => deleteFolder()}>Delete Folder</li>
         <li className='settings-dropdown-item' onClick={() => newFolder()}>New Folder</li>
       </ul>
-    )
+    );
   }
   renderNoteContextMenu() {
     const { showEditorPopup, deleteNote, coordinates, value } = this.props;
     return (
       <ul
-        ref={ul => { this.ul = ul; }}
+        ref={ (ul) => { this.ul = ul; }}
         style={{ left: coordinates[0], top: coordinates[1] }}
         className='settings-dropdown'>
         <li className='settings-dropdown-item' onClick={() => showEditorPopup(value)}>Edit Note</li>
         <li className='settings-dropdown-item' onClick={() => deleteNote()}>Delete Note</li>
       </ul>
-    )
+    );
   }
   render() {
     const { from } = this.props;
@@ -46,7 +46,7 @@ class Dropdown extends Component {
       <div>
         { from === 'note' ? this.renderNoteContextMenu() : this.renderFolderContextMenu() }
       </div>
-    )
+    );
   }
 }
 

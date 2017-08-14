@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import * as filterNotesActions from '../../../actions/filterNotes';
 import './Search.scss';
 
-const mapStateToProps = ({}) => ({});
+const mapStateToProps = () => ({});
 
 const actions = Object.assign({}, filterNotesActions);
 const mapDispatchToProps = dispatch => ({ actions: bindActionCreators(actions, dispatch) });

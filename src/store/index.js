@@ -1,11 +1,12 @@
 import { createStore, applyMiddleware } from 'redux';
-import rootReducer from '../reducers/index';
 import thunkMiddleware from 'redux-thunk';
+
+import rootReducer from '../reducers/index';
 
 const initialState = {
   directories: [],
   notices: [],
-}
+};
 
 const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);
 

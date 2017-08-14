@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as directoriesActions from '../../../../actions/directories'
+import * as directoriesActions from '../../../../actions/directories';
 import * as selectDirectoryActions from '../../../../actions/selectedDirectory';
 import * as editDirectoryActions from '../../../../actions/editDirectory';
 import directories from '../../../../reducers/directories';
@@ -95,7 +95,7 @@ class DisplayDirectories extends Component {
     if (opened.indexOf(selectedDirectory) === -1) {
       this.setState({ opened: [...opened, selectedDirectory] });
     }
-    postDirectory({ id: selectedDirectory, name: this.checkUntitled(selectedDirectory)});
+    postDirectory({ id: selectedDirectory, name: this.checkUntitled(selectedDirectory) });
   }
   renderContextMenu(e, id) {
     const { dropdownCoordinates } = this.state;
@@ -115,16 +115,19 @@ class DisplayDirectories extends Component {
     const { editDirectory, directories } = this.props;
     document.removeEventListener('keypress', this.handleKeyPress, false);
     if (!save) {
-      updateDirectory(editDirectory.id, Object.assign(editDirectory, { name: value || this.checkUntitled(editDirectory.parentId) }));
+      updateDirectory(
+        editDirectory.id,
+        Object.assign(editDirectory,
+          { name: value || this.checkUntitled(editDirectory.parentId) }));
       this.setState({ save: true });
     }
     removeEditDirectory();
   }
   checkUntitled(parentId) {
     const { directories } = this.props;
-    const inner = directories.filter((item) => item.parentId === parentId);
+    const inner = directories.filter(item => item.parentId === parentId);
     const lastIndex = inner.reduce((acc, item) => {
-      if ('untitled folder' !== item.name && item.name.indexOf('untitled folder') !== -1) {
+      if (item.name !== 'untitled folder' && item.name.indexOf('untitled folder') !== -1) {
         const nameArr = item.name.split(' ');
         return nameArr[nameArr.length - 1];
       }
@@ -151,7 +154,7 @@ class DisplayDirectories extends Component {
     const renderTree = ({ obj, id, result, paddingLeft }) => {
       if (opened.indexOf(id) !== -1 && checkChildren(obj, id)) {
         obj[id].map((item) => {
-          const temp =  editDirectory && editDirectory.id === item.id ?
+          const temp = editDirectory && editDirectory.id === item.id ?
             <li className='directory' key={item.id} style={{ paddingLeft: `${paddingLeft}px`, backgroundPosition: `${paddingLeft - 23}px 4px` }}>
               <input onChange={e => this.handleOnChange(e)} autoFocus defaultValue={item.name} name='value' onBlur={() => this.saveChanges()}/>
             </li> :
@@ -167,6 +170,7 @@ class DisplayDirectories extends Component {
           if (checkChildren(obj, item.id)) {
             result = renderTree({ obj, id: item.id, result, paddingLeft: paddingLeft + 13 });
           }
+          return item;
         });
       }
       return result;

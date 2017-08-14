@@ -1,4 +1,4 @@
-export const setEditDirectory = (directory) => ({
+export const setEditDirectory = directory => ({
   type: 'SET_EDIT_DIRECTORY',
   payload: directory,
 });

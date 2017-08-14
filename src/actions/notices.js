@@ -1,6 +1,6 @@
 import config from '../config/config';
 
-export const postNote = (params) => async (dispatch) => {
+export const postNote = params => async (dispatch) => {
   try {
     const { id, title, description, tags } = params;
     const response = await fetch(`${config.url}notices`, {
@@ -51,4 +51,4 @@ export const deleteNote = id => async (dispatch) => {
   } catch (err) {
     console.log(err);
   }
-}
+};

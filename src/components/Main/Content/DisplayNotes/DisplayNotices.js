@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Autocomplete from 'react-autocomplete';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Dropdown from '../../../Dropdown';
@@ -81,7 +80,7 @@ class DisplayNotices extends Component {
     );
   }
   showEditorPopup(note) {
-    this.props.showPopup(0, note)
+    this.props.showPopup(0, note);
     if (this.state.showContextMenu) {
       this.closeContextMenu();
     }
@@ -100,19 +99,19 @@ class DisplayNotices extends Component {
             { filteredNotices
               .sort((note1, note2) => note1.position - note2.position)
               .map((item, index) =>
-              <div
-                onDoubleClick={() =>  this.showEditorPopup(item)}
-                onClick={() => this.selectNote(item)}
-                key={index}
-                onContextMenu={e => this.contextMenu(e, item)}
-                className={ this.state.value && this.state.value.id === item.id ? 'selected-item note-container' : 'note-container' }
-              ><div className='item-wrap'>
-                  <div className='file-image'></div>
-                  <span className='note-title'>{item.title}</span>
-                </div>
-                { noteView === 'icon' ? '' : this.renderListInfo(item) }
-                { noteView === 'icon' ? '' : <span className='item-tags'>{ Array.isArray(item.tags) && item.tags.join(' ') }</span>}
-              </div>) }
+                <div
+                  onDoubleClick={() => this.showEditorPopup(item)}
+                  onClick={() => this.selectNote(item)}
+                  key={index}
+                  onContextMenu={e => this.contextMenu(e, item)}
+                  className={ this.state.value && this.state.value.id === item.id ? 'selected-item note-container' : 'note-container' }
+                ><div className='item-wrap'>
+                    <div className='file-image'></div>
+                    <span className='note-title'>{item.title}</span>
+                  </div>
+                  { noteView === 'icon' ? '' : this.renderListInfo(item) }
+                  { noteView === 'icon' ? '' : <span className='item-tags'>{ Array.isArray(item.tags) && item.tags.join(' ') }</span>}
+                </div>) }
           </div>
         </Scroll>
       </article>

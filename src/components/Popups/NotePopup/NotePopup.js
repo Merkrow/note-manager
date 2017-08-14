@@ -33,7 +33,8 @@ class NotePopup extends Component {
       save: true,
     };
     this.onKeyDownHandler = this.onKeyDownHandler.bind(this);
-    this.submitNote = this.submitNote.bind(this);
+    this.saveAndExit = this.saveAndExit.bind(this);
+    this.saveNote = this.saveNote.bind(this);
     this.exit = this.exit.bind(this);
     this.handleOutsideClick = this.handleOutsideClick.bind(this);
     this.onKeyPressHandler = this.onKeyPressHandler.bind(this);
@@ -67,11 +68,11 @@ class NotePopup extends Component {
     }
   }
   onKeyPressHandler(e) {
-    const { submitNote, exit } = this;
+    const { saveNote, exit } = this;
     const { deleteNote } = this.props.actions;
     const { id } = this.state;
     if (e.key === 's') {
-      submitNote();
+      saveNote();
     }
     if (e.key === 'Backspace') {
       deleteNote(id);
@@ -111,7 +112,7 @@ class NotePopup extends Component {
       save: false,
     });
   }
-  submitNote() {
+  saveNote() {
     const { postNote, updateNote } = this.props.actions;
     const { id, title, description, updating, directoryId, position } = this.state;
     const { tags } = this.props;
@@ -121,7 +122,10 @@ class NotePopup extends Component {
       updateNote(id, { id, title: title || 'text', description, tags, directoryId, position });
     }
     this.setState({ save: true });
-    this.exit();
+  }
+  saveAndExit() {
+    this.saveNote();
+    this.setState({ save: true }, () => this.exit());
   }
   exit() {
     const { closePopup } = this.props;
@@ -133,7 +137,7 @@ class NotePopup extends Component {
     }
     const answer = confirm('Do you want to save?');
     if (answer) {
-      this.submitNote();
+      this.saveAndExit();
     } else {
       closePopup();
     }
@@ -147,7 +151,7 @@ class NotePopup extends Component {
   addNote() {
     const { description } = this.state;
     return (
-        <textarea className='description-input' onChange={e => this.handleInputChange(e)} value={description} name='description' type='text' />
+      <textarea className='description-input' onChange={e => this.handleInputChange(e)} value={description} name='description' type='text' />
     );
   }
   toggleDropdown() {
@@ -162,6 +166,9 @@ class NotePopup extends Component {
     const { addTag } = this.props.actions;
     this.setState({ save: false });
     addTag(tag);
+  }
+  closeByButton() {
+    this.exit();
   }
   renderEditor() {
     const { title } = this.state;
@@ -201,7 +208,7 @@ class NotePopup extends Component {
       <div id='modal' className='modal-background'>
         <div className='note-popup'>
           <header className='popup-header'>
-            <button className='close-button' onClick={() => this.props.closePopup()}></button>
+            <button className='close-button' onClick={() => this.closeByButton()}></button>
             <span ref={(span) => { this.span = span; }} className='title' onClick={() => this.toggleDropdown()}>
               <span className='title-text'>{this.state.title || 'text'}</span><span className='edit-message'><span>—</span>Edited</span><img className='triangle' src='./images/dropdown.png'></img>
             </span>

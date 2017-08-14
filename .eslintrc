@@ -21,7 +21,13 @@
     "no-use-before-define": ["off"],
     "class-methods-use-this": ["off"],
     "no-continue": ["off"],
-    "no-undef": ["off"]
+    "no-undef": ["off"],
+    "no-shadow": ["off"],
+    "no-unused-vars": ["off"],
+    "no-alert": ["off"],
+    "no-confusing-arrow": ["off"],
+    "no-console": ["off"],
+    "import/prefer-default-export": ["off"],
   },
   "globals": {
     "React$Element": true,

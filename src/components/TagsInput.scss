@@ -18,6 +18,7 @@ $dropdown-input: #cfcfcf;
     background-color: #fff;
     display: inline-block;
     width: 322px;
+    height: 100%;
     text-align: left;
     overflow: hidden;
     padding-left: 2px;
@@ -30,8 +31,8 @@ $dropdown-input: #cfcfcf;
       line-height: 17px;
       .tag {
         display: inline-block;
-        height: 100%;
-        margin: 3px 0 0 2px;
+        height: 18px;
+        margin: 0 0 0 2px;
         padding: 0 9px 0 17px;
         border-radius: 8px;
         background-color: #e7ebef;
@@ -44,6 +45,7 @@ $dropdown-input: #cfcfcf;
       .tag-input {
         height: 100%;
         border: none;
+        padding: 0;
       }
     }
   }

@@ -11,7 +11,7 @@ class TagsInput extends Component {
     const { name, value } = e.target;
     this.setState({
       [name]: value,
-    })
+    });
   }
   handleFocus() {
     document.addEventListener('keydown', this.handleKeyDown, false);
@@ -46,7 +46,7 @@ class TagsInput extends Component {
           type='text'
           className='tag-input'
           name='tag'
-          ref={tagInput => { this.tagInput = tagInput; }}
+          ref={ (tagInput) => { this.tagInput = tagInput; }}
           value={tag}
           onFocus={() => this.handleFocus()}
           onBlur={() => this.handleBlur()}

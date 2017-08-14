@@ -2,7 +2,7 @@ const initialState = [];
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case  'SET_TAGS':
+    case 'SET_TAGS':
       return action.payload;
     case 'ADD_TAG':
       if (state.length && state.indexOf(action.payload) !== -1) {

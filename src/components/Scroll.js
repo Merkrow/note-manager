@@ -41,11 +41,13 @@ class Scroll extends Component {
   }
   calculateTopOffset() {
     const { scrollTop, scrollHeight, clientHeight } = this.div;
-    return ((scrollTop + clientHeight / 2) / (scrollHeight / 2) * clientHeight / 2 - (clientHeight / scrollHeight * clientHeight) / 2) + scrollTop;
+    return ((scrollTop + clientHeight / 2) / (scrollHeight / 2) * clientHeight / 2
+      - (clientHeight / scrollHeight * clientHeight) / 2) + scrollTop;
   }
   calculateLeftOffset() {
     const { scrollLeft, scrollWidth, clientWidth } = this.div;
-    return (( scrollLeft + clientWidth / 2) / (scrollWidth / 2) * clientWidth / 2 - (clientWidth / scrollWidth * clientWidth) / 2) + scrollLeft;
+    return ((scrollLeft + clientWidth / 2) / (scrollWidth / 2) * clientWidth / 2
+      - (clientWidth / scrollWidth * clientWidth) / 2) + scrollLeft;
   }
   renderVerticalScroll() {
     const height = this.getScrollbarHeight();
@@ -54,7 +56,7 @@ class Scroll extends Component {
     return (
       <div style={{ height, top, right: -positionLeft + 27 }} className='custom-vertical-scroll'>
       </div>
-    )
+    );
   }
   renderHorizontalScroll() {
     const width = this.getScrollBarWidth();
@@ -63,7 +65,7 @@ class Scroll extends Component {
     return (
       <div style={{ width, left, bottom: -positionTop + 27 }} className='custom-horizontal-scroll'>
       </div>
-    )
+    );
   }
   render() {
     return (
@@ -72,7 +74,7 @@ class Scroll extends Component {
         { this.state.scrollingLeft ? this.renderHorizontalScroll() : ''}
         { this.props.children }
       </div>
-    )
+    );
   }
 }
 
