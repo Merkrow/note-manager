@@ -18,9 +18,20 @@ $input-placeholder-color: #a3a0a1;
 
 // style
 
+@media (min-width: #{940px}) {
+  .search {
+    left: 662px;
+  }
+}
+
+@media (max-width: #{940px}) {
+  .search {
+    right: 10px;
+  }
+}
+
 .search {
   position: absolute;
-  left: 662px;
   top: 8px;
   input {
     width: 244px;
