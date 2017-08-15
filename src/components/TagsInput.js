@@ -41,7 +41,7 @@ class TagsInput extends Component {
     const { tag } = this.state;
     return (
       <span className='tags-wrap'>
-        { tags && tags.map((tag, index) => <span key={-index} className='tag'>{ tag }</span>) }
+        { tags && tags.map((tag, index) => <span key={`tag-${index}`} className='tag'>{ tag }</span>) }
         <input
           type='text'
           className='tag-input'

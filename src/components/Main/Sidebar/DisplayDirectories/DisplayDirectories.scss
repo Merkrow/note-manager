@@ -10,6 +10,7 @@ $selected-bg: #dbdbdb;
   .sidebar {
     min-height: 50%;
     position: relative;
+    border-bottom: 1px solid $selected-bg;
   }
 }
 
@@ -21,12 +22,12 @@ $selected-bg: #dbdbdb;
   overflow: hidden;
   @media (max-width: #{768px}) {
     .scroll-wrapper {
-      overflow: scroll;
+      overflow-y: scroll;
+      overflow-x: hidden;
       display: inline-block;
       width: 100%;
       position: absolute;
       padding-right: 25px;
-      padding-bottom: 15px;
       top: 0;
       bottom: 0;
       .custom-vertical-scroll {
@@ -38,15 +39,6 @@ $selected-bg: #dbdbdb;
         border-radius: 5px;
         border: 1px solid #8a8c8d;
         box-sizing: border-box;
-      }
-      .custom-horizontal-scroll {
-        position: absolute;
-        display: inline-block;
-        height: 7px;
-        border-radius: 5px;
-        border: 1px solid #8a8c8d;
-        box-sizing: border-box;
-        background: rgba(138, 140, 141, 0.5);
       }
     }
     .directories-list {
@@ -76,13 +68,13 @@ $selected-bg: #dbdbdb;
   }
   @media (min-width: #{768px}) {
     .scroll-wrapper {
-      overflow: scroll;
+      overflow-y: scroll;
+      overflow-x: hidden;
       display: inline-block;
       width: 300px;
       height: 100%;
       position: relative;
       padding-right: 25px;
-      padding-bottom: 25px;
       .custom-vertical-scroll {
         position: absolute;
         bottom: 2px;
@@ -92,15 +84,6 @@ $selected-bg: #dbdbdb;
         border-radius: 5px;
         border: 1px solid #8a8c8d;
         box-sizing: border-box;
-      }
-      .custom-horizontal-scroll {
-        position: absolute;
-        display: inline-block;
-        height: 7px;
-        border-radius: 5px;
-        border: 1px solid #8a8c8d;
-        box-sizing: border-box;
-        background: rgba(138, 140, 141, 0.5);
       }
     }
   }

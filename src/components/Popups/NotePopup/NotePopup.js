@@ -113,6 +113,9 @@ class NotePopup extends Component {
     });
   }
   saveNote() {
+    if (this.state.save === true) {
+      return;
+    }
     const { postNote, updateNote } = this.props.actions;
     const { id, title, description, updating, directoryId, position } = this.state;
     const { tags } = this.props;
